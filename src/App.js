@@ -10,10 +10,9 @@ import {
   HashRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import HomePage from './components/HomePage/HomePage';
-import Toggle from './components/Toggler';
+
 
 function App() {
   const [data, setData] = useState([]);

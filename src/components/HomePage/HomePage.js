@@ -13,7 +13,7 @@ function HomePage({ theme, themeToggler }) {
 
     return (
         <Wrapper>
-            <Titles>
+            {/* <Titles>
                 <BigTitle>Selected Art</BigTitle>
                 <SmallTitle>Hover above the cards to learn more about the art</SmallTitle>
             </Titles>
@@ -23,7 +23,7 @@ function HomePage({ theme, themeToggler }) {
 
 
 
-            <Toggle theme={theme} toggleTheme={themeToggler} />
+            <Toggle theme={theme} toggleTheme={themeToggler} /> */}
 
             <CarouselSliders />
         </Wrapper>
@@ -33,6 +33,7 @@ function HomePage({ theme, themeToggler }) {
 const Wrapper = styled.div`
     position: relative;
     height: 100vh;
+    
 `
 
 const Titles = styled.div`

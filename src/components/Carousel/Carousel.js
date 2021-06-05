@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 
@@ -7,14 +7,30 @@ const Wrapper = styled.div`
   align-items: center;
   background-color: rgba(242, 242, 242, 1);
   padding: 20px 0;
+ 
 `;
 
 const SlidesContainer = styled.div`
   display: flex;
   width: 800px;
-  overflow: hidden;
+ overflow: hidden;
   padding: 0 5px;
+ 
+ 
+ 
+ 
+ 
 `;
+const InnerContainer = styled.div`
+        display: flex;
+        flex-direction:row;
+ 
+      transform: ${({ count, cursor }) => {
+        console.log(count, cursor);
+        return `translateX(-${(count + cursor) * 400}px)`;
+    }};
+           transition: all 2000ms ease;
+`
 
 const Button = styled.button`
   color: rgba(17, 17, 17, 0.4);
@@ -23,86 +39,75 @@ const Button = styled.button`
   border: 0;
   display: block;
   align-self: stretch;
-
- 
 `;
 
-class Carousel extends React.Component {
-    state = {
-        cursor: 0,
-        jump: false
-    };
 
-    ref = React.createRef();
+function Carousel(props) {
+    let innerContainer = useRef();
+    const [jump, setJump] = useState(false);
+    const [cursor, setCursor] = useState(0);
 
-    componentDidMount() {
-        this.ref.current.addEventListener("transitionend", this.onTransitionEnd);
-    }
+    const count = React.Children.count(props.children);
 
-    componentWillUnmount() {
-        this.ref.current.removeEventListener("transitioned", this.onTransitionEnd);
-    }
 
-    animating = false;
+    // useEffect(() => {
 
-    componentDidUpdate(prevProps, prevState) {
-        const { cursor, jump } = this.state;
-        const { cursor: oldCursor } = prevState;
+    //     innerContainer.current.addEventListener("transitionend", onTransitionEnd);
+    //     return () => {
+    //         innerContainer.current.removeEventListener("transitioned", onTransitionEnd);
+    //     }
+    // }, [])
 
-        if (cursor !== oldCursor) {
-            this.animating = true;
-        }
-
+    useEffect(() => {
+        console.log('triggered, jump = ', jump, ' cursor = ', cursor);
         if (jump) {
+            innerContainer.current.style.transition = 'none'
             setTimeout(() => {
-                this.animating = false;
-                this.setState({
-                    jump: false
-                });
-            }, 1);
+                setJump(false)
+            }, 200);
+
+
+        } else {
+            console.log('jump is ', jump);
+            innerContainer.current.style.transition = 'all 200ms ease'
         }
+
+        return () => {
+            console.log('clean');
+          
+       
+        }
+    }, [jump, cursor])
+
+
+
+    const onTransitionEnd = () => {
+
+        console.log('trans end = ', cursor);
+        if (cursor >= count) {
+
+            setJump(true)
+            setCursor(0)
+            return;
+        }
+
+        else if (cursor <= -1) {
+            console.log('setting cursor to 9 ');
+            setJump(true)
+            setCursor(count - 1)
+
+            return;
+        }
+
+        //  setJump(false)
+
     }
 
-    onTransitionEnd = () => {
-        const { cursor } = this.state;
-        const { children } = this.props;
-        const count = React.Children.count(children);
 
-        this.animating = false;
 
-        if (cursor >= count) {
-            this.setState({
-                jump: true,
-                cursor: 0
-            });
 
-            return;
-        }
-
-        if (cursor <= -1) {
-            this.setState({
-                jump: true,
-                cursor: count - 1
-            });
-
-            return;
-        }
-    };
-
-    changeCursor = amount => {
-        const { cursor } = this.state;
-
-        if (this.animating) {
-            return;
-        }
-
-        this.setState({
-            cursor: cursor + amount
-        });
-    };
-
-    renderChildren() {
-        const { children: childrenElements } = this.props;
+    const renderChildren = () => {
+        const { children: childrenElements } = props;
         let children = React.Children.toArray(childrenElements);
         children = [].concat(children, children, children);
 
@@ -111,31 +116,29 @@ class Carousel extends React.Component {
         });
     }
 
-    render() {
-        const { cursor, jump } = this.state;
-        const { children } = this.props;
-        const count = React.Children.count(children);
+    const changeCursor = (amount) => {
 
-        const style = {
-            display: "flex",
-            transition: jump ? "none" : "all 200ms ease",
-            transform: `translateX(-${(count + cursor) * 250}px)`
-        };
+        setCursor(cursor + amount)
 
-        return (
-            <Wrapper>
-                <button onClick={() => this.changeCursor(-1)}>
-                    left
-                </button>
-                <SlidesContainer>
-                    <div style={style} ref={this.ref}>
-                        {this.renderChildren()}
-                    </div>
-                </SlidesContainer>
-                <button onClick={() => this.changeCursor(1)}>right</button>
-            </Wrapper>
-        );
     }
+
+    return (
+        <Wrapper>
+            <button onClick={() => changeCursor(-1)}>
+                left
+                </button>
+            <SlidesContainer>
+                <InnerContainer count={count} cursor={cursor} ref={innerContainer}
+                    onTransitionEnd={onTransitionEnd}
+                >
+                    {renderChildren()}
+                </InnerContainer>
+            </SlidesContainer>
+            <button onClick={() => changeCursor(1)}>right</button>
+        </Wrapper>
+    )
 }
+
+
 
 export default Carousel;

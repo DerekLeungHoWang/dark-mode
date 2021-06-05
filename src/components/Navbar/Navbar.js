@@ -1,7 +1,7 @@
 
 
 import React from 'react'
-import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 import { menuItems } from './MenuItem'
@@ -22,7 +22,7 @@ const Logo = styled.h1`
     margin-left: 35px;
     margin-top: 35px;
 `;
-const NavLinkContainer = styled(Link)`
+const NavLinkContainer = styled.div`
     text-decoration: none;
     position: absolute;
     right: 50px;
@@ -30,7 +30,7 @@ const NavLinkContainer = styled(Link)`
  
 `;
 
-const NavLink = styled(Link)`
+const NavLink = styled.div`
     text-decoration: none;
     margin-left: 50px;
     color: ${({ theme }) => theme.text};

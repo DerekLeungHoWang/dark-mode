@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 const Outer = styled.div`
   padding: 10px 5px;
-  width: 250px;
-  height: 100px;
+  width: 400px;
+  height: 600px;
 `;
 
 const Inner = styled.div`
   width: 240px;
   height: 80px;
-  background-color: #111;
+  background-color: red;
   color: white;
   padding: 5px;
   font-size: 4rem;
@@ -22,7 +22,10 @@ const Inner = styled.div`
 export default props => {
     return (
         <Outer>
-            <Inner>{props.children}</Inner>
+            <Inner>
+
+                <img src={props.item.img} alt={props.item.title} />
+            </Inner>
         </Outer>
     );
 };

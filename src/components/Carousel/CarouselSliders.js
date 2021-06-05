@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Carousel from "./Carousel";
+import { data } from "./data";
 import Slide from "./Slide";
 
 
@@ -11,8 +12,8 @@ function CarouselSliders() {
         <Wrapper>
 
             <Carousel>
-                {[...Array(10)].map((q, index) => {
-                    return <Slide key={index + 1}>{index + 1}</Slide>;
+                {data.map((item, index) => {
+                    return <Slide key={index + 1} item={item} />;
                 })}
             </Carousel>
         </Wrapper>
@@ -28,5 +29,6 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+ 
 `;
 
