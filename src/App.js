@@ -5,19 +5,42 @@ import { useState } from 'react';
 import { useDarkMode } from './components/useDarkMode';
 import { darkTheme, lightTheme } from './components/Themes';
 import { GlobalStyles } from './Globalstyle';
+import Navbar from './components/Navbar/Navbar';
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import HomePage from './components/HomePage/HomePage';
 import Toggle from './components/Toggler';
 
 function App() {
   const [data, setData] = useState([]);
-  const [theme, themeToggler, mountedComponent] = useDarkMode();
+  const [theme, themeToggler] = useDarkMode();
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
+
+
   return (
     <ThemeProvider theme={themeMode}>
       <>
         <GlobalStyles />
         <div className="App">
-          <Toggle theme={theme} toggleTheme={themeToggler} />
-          <h2>TEST</h2>
+
+          <Router>
+            <Navbar />
+
+            <Switch>
+              <Route path={"/"} render={() => (
+                <HomePage themeToggler={themeToggler} theme={theme}   />
+              )} >
+              </Route>
+
+            </Switch>
+
+          </Router>
+
+
         </div>
       </>
     </ThemeProvider>

@@ -3,7 +3,6 @@ import styled from "styled-components"
 
 const Button = styled.button`
   
-  border: 2px solid ${({ theme }) => theme.toggleBorder};
   border-radius: 30px;
   cursor: pointer;
   font-size: 0.5rem;
@@ -15,21 +14,11 @@ const Button = styled.button`
   width: 8rem;
   height: 4rem;
   outline: none;
-  }
+  
 
-`;
-
-const Sun = styled.svg`
- height: auto;
- width: 2.5rem;
- transition: all 0.7s linear;
-`;
-
-const Moon = styled.svg`
-  height: auto;
-  width: 2.5rem;
-  transition: all 0.7s linear;
 `
+
+ 
 
 const Toggle = ({ theme, toggleTheme }) => {
     return (
