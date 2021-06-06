@@ -23,11 +23,12 @@ function CarouselSliders() {
 export default CarouselSliders;
 
 const Wrapper = styled.div`
-  padding: 24px;
+  position: relative;
+  bottom: 70px;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
  
 `;

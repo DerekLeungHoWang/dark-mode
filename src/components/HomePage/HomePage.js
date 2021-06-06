@@ -13,17 +13,17 @@ function HomePage({ theme, themeToggler }) {
 
     return (
         <Wrapper>
-            {/* <Titles>
+            <Titles>
                 <BigTitle>Selected Art</BigTitle>
                 <SmallTitle>Hover above the cards to learn more about the art</SmallTitle>
             </Titles>
-            <CardList>
+            {/* <CardList>
                 <Card />
-            </CardList>
+            </CardList> */}
 
 
 
-            <Toggle theme={theme} toggleTheme={themeToggler} /> */}
+            <Toggle theme={theme} toggleTheme={themeToggler} />
 
             <CarouselSliders />
         </Wrapper>

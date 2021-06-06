@@ -7,15 +7,14 @@ const Wrapper = styled.div`
   align-items: center;
   background-color: rgba(242, 242, 242, 1);
   padding: 20px 0;
- 
+    width: 100%;
 `;
 
 const SlidesContainer = styled.div`
-  display: flex;
-  width: 800px;
+display: flex;
  overflow: hidden;
   padding: 0 5px;
- 
+   width: 100%;
  
  
  
@@ -25,11 +24,12 @@ const InnerContainer = styled.div`
         display: flex;
         flex-direction:row;
  
+ 
       transform: ${({ count, cursor }) => {
         console.log(count, cursor);
         return `translateX(-${(count + cursor) * 400}px)`;
     }};
-           transition: all 2000ms ease;
+           transition: all 500 ease;
 `
 
 const Button = styled.button`
@@ -46,6 +46,7 @@ function Carousel(props) {
     let innerContainer = useRef();
     const [jump, setJump] = useState(false);
     const [cursor, setCursor] = useState(0);
+    const [disable, setDisable] = useState(false)
 
     const count = React.Children.count(props.children);
 
@@ -60,29 +61,33 @@ function Carousel(props) {
 
     useEffect(() => {
         console.log('triggered, jump = ', jump, ' cursor = ', cursor);
+
         if (jump) {
             innerContainer.current.style.transition = 'none'
+            setDisable(true)
             setTimeout(() => {
                 setJump(false)
-            }, 200);
+                setDisable(false)
+            }, 500);
 
 
         } else {
             console.log('jump is ', jump);
-            innerContainer.current.style.transition = 'all 200ms ease'
+            innerContainer.current.style.transition = 'all 500ms ease'
+
         }
 
         return () => {
             console.log('clean');
-          
-       
+
+
         }
     }, [jump, cursor])
 
 
 
     const onTransitionEnd = () => {
-
+        setDisable(false)
         console.log('trans end = ', cursor);
         if (cursor >= count) {
 
@@ -117,14 +122,14 @@ function Carousel(props) {
     }
 
     const changeCursor = (amount) => {
-
+        setDisable(true)
         setCursor(cursor + amount)
 
     }
 
     return (
         <Wrapper>
-            <button onClick={() => changeCursor(-1)}>
+            <button disabled={disable} onClick={() => changeCursor(-1)}>
                 left
                 </button>
             <SlidesContainer>
@@ -134,7 +139,7 @@ function Carousel(props) {
                     {renderChildren()}
                 </InnerContainer>
             </SlidesContainer>
-            <button onClick={() => changeCursor(1)}>right</button>
+            <button disabled={disable} onClick={() => changeCursor(1)}>right</button>
         </Wrapper>
     )
 }

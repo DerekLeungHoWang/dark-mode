@@ -12,42 +12,42 @@ export const data =
         {
             id: 1,
             title: "Drawing 1",
-            img: image6
+            img: image1
 
         },
         {
             id: 2,
             title: "Drawing 2",
-            img: image5
+            img: image2
         },
         {
             id: 3,
             title: "Drawing 3",
+            img: image3
+        },
+        {
+            id: 4,
+            title: "Drawing 4",
             img: image4
         },
-        // {
-        //     id: 4,
-        //     title: "Drawing 4",
-        //     img: image4
-        // },
-        // {
-        //     id: 5,
-        //     title: "Drawing 5",
-        //     img: image5
-        // },
-        // {
-        //     id: 6,
-        //     title: "Drawing 6",
-        //     img: image6
-        // },
+        {
+            id: 5,
+            title: "Drawing 5",
+            img: image5
+        },
+        {
+            id: 6,
+            title: "Drawing 6",
+            img: image6
+        },
         // {
         //     id: 7,
         //     title: "Drawing 7",
         //     img: image7
         // },
-        // {
-        //     id: 8,
-        //     title: "Drawing 8",
-        //     img: image8
-        // },
+        {
+            id: 8,
+            title: "Drawing 8",
+            img: image8
+        },
     ]
