@@ -5,7 +5,7 @@ const Outer = styled.div`
 position: relative;
   /* padding: 10px 5px; */
   width: 400px;
-  height: 600px;
+  height: 550px;
   /* background: ${({ theme }) => theme.body}; */
   
 `;
@@ -13,7 +13,7 @@ position: relative;
 const Inner = styled.div`
 width: 100%;
   height: 80%;
-  background-color: red;
+ 
   color: white;
   font-size: 10px;
   display: flex;
@@ -24,7 +24,7 @@ width: 100%;
   margin: 0px 20px;
 `;
 const Image = styled.img`
-width: 100%;
+width: 80%;
 height: 900px;
 
 `

@@ -1,3 +1,4 @@
+import { Grid } from '@material-ui/core';
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import Card from '../Card/Card';
@@ -9,41 +10,55 @@ import Toggle from '../Toggler';
 import { useDarkMode } from '../useDarkMode';
 
 
-function HomePage({  theme, themeToggler }) {
+function HomePage({ theme, themeToggler }) {
 
     return (
-        <Wrapper>
-            <Titles>
-                <BigTitle>Selected Art</BigTitle>
-                <SmallTitle>Hover above the cards to learn more about the art</SmallTitle>
-                <Toggle  theme={theme} toggleTheme={themeToggler} />
-            </Titles>
-  
- 
-          
+        <Wrapper container
+            direction="row"
+            justify="center"
+            alignItems="center">
 
-            <CarouselSliders />
+            <Grid container item
+                direction="column"
+                justify="center"
+                alignItems="center">
+                <Titles>
+                    <BigTitle>Selected Art</BigTitle>
+                    <SmallTitle>Hover above the cards to learn more about the art</SmallTitle>
+                    <Toggle theme={theme} toggleTheme={themeToggler} />
+                </Titles>
+            </Grid>
+
+            <Grid container item >
+                <CarouselSliders />
+            </Grid>
         </Wrapper>
     )
 }
+const Titles = styled.div`
+    width:50%;
+    text-align: left;
+   
+`
 
-const Wrapper = styled.div`
+const Wrapper = styled(Grid)`
+    
     position: relative;
-    height: 100vh;
+    top: 25vh;
     
 `
 
-const Titles = styled.div`
-    position: absolute;
-    left: 15%;
-    top:15%;
-    text-align: left;
-`
+
 
 const BigTitle = styled.h1`
-
+    font-size: 50px;
+    margin: 0px;
+    padding: 0px;
 `
 const SmallTitle = styled.h5`
+   font-size: 20px;
+   margin: 0px;
+    padding: 0px;
     /* color: ${({ theme }) => theme.secondaryText}; */
 `
 

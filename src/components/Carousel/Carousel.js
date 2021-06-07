@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   /* background-color: ${({ theme }) => theme.body}; */
   /* padding: 20px 0; */
+  /* height: 100%; */
     width: 100%;
 `;
 
@@ -33,12 +35,13 @@ const InnerContainer = styled.div`
 `
 
 const Button = styled.button`
-  color: rgba(17, 17, 17, 0.4);
-  background-color: transparent;
+  color: red;
+  background-color: white;
   padding: 0 10px;
   border: 0;
   display: block;
-  align-self: stretch;
+  cursor: pointer;
+    height: 80px;
 `;
 
 
@@ -50,14 +53,7 @@ function Carousel(props) {
 
     const count = React.Children.count(props.children);
 
-
-    // useEffect(() => {
-
-    //     innerContainer.current.addEventListener("transitionend", onTransitionEnd);
-    //     return () => {
-    //         innerContainer.current.removeEventListener("transitioned", onTransitionEnd);
-    //     }
-    // }, [])
+ 
 
     useEffect(() => {
         console.log('triggered, jump = ', jump, ' cursor = ', cursor);
@@ -129,9 +125,9 @@ function Carousel(props) {
 
     return (
         <Wrapper>
-            <button disabled={disable} onClick={() => changeCursor(-1)}>
-                left
-                </button>
+            <Button disabled={disable} onClick={() => changeCursor(-1)}>
+                <FontAwesomeIcon icon={faChevronLeft} />
+            </Button>
             <SlidesContainer>
                 <InnerContainer count={count} cursor={cursor} ref={innerContainer}
                     onTransitionEnd={onTransitionEnd}
@@ -139,10 +135,12 @@ function Carousel(props) {
                     {renderChildren()}
                 </InnerContainer>
             </SlidesContainer>
-            <button disabled={disable} onClick={() => changeCursor(1)}>right</button>
+            <Button disabled={disable} onClick={() => changeCursor(1)}>
+                <FontAwesomeIcon icon={faChevronRight} /></Button>
         </Wrapper>
     )
 }
+
 
 
 

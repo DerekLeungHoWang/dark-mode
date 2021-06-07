@@ -19,9 +19,9 @@ const Circle = styled.div`
   height: 100vh;
   background-color: #000;
   position: absolute;
-  top: 0;
-  left: 0;
-  clip-path: circle(3% at 350px 280px);
+  top: 0px;
+  left: 0px;
+  clip-path: circle(1% at 17% 28%);
   color: blue;
   font-size: 40px;
   font-weight: 1000;
@@ -29,8 +29,7 @@ const Circle = styled.div`
 `
 const MyButton = styled.button`
   color: red;
- 
-  z-index: 999;
+  
 
 
 `
@@ -52,7 +51,7 @@ function App() {
   useEffect(() => {
 
     tl.current.to(circle.current, {
-      clipPath: "circle(141%  at 350px 280px )",
+      clipPath: "circle(141%  at 17% 28% )",
       duration: .8,
     })
 
@@ -89,7 +88,7 @@ function App() {
 
           </Router>
           <Circle ref={circle} />
-          <Cont>
+          {/* <Cont>
             <MyButton
               onClick={() => tl.current.play()}
             >play</MyButton>
@@ -97,7 +96,7 @@ function App() {
             <MyButton
               onClick={() => tl.current.reverse()}
             >rev</MyButton>
-          </Cont>
+          </Cont> */}
 
         </div>
       </>
