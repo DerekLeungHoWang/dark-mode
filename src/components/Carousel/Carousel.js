@@ -5,8 +5,8 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  background-color: rgba(242, 242, 242, 1);
-  padding: 20px 0;
+  /* background-color: ${({ theme }) => theme.body}; */
+  /* padding: 20px 0; */
     width: 100%;
 `;
 

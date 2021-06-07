@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 export const useDarkMode = () => {
+ 
     const [theme, setTheme] = useState('dark');
     const [mountedComponent, setMountedComponent] = useState(false)
     const setMode = mode => {
@@ -7,9 +8,20 @@ export const useDarkMode = () => {
         setTheme(mode)
     };
 
-    const themeToggler = () => {
-        console.log('toggling');
-        theme === 'light' ? setMode('dark') : setMode('light')
+    const themeToggler = (tl) => {
+ 
+        if(theme==='light'){
+       
+        
+            setMode('dark')
+        }else{
+          
+          
+            setMode('light')
+    
+        }
+   
+      
     };
 
     useEffect(() => {

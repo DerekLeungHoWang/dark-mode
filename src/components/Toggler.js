@@ -1,31 +1,34 @@
 import React from 'react'
 import styled from "styled-components"
-
+import { ReactComponent as Sun } from '../images/sun.svg'
 const Button = styled.button`
-  
+  position: absolute;
   border-radius: 30px;
   cursor: pointer;
-  font-size: 0.5rem;
-  justify-content: space-between;
-  margin: 0 auto;
-  overflow: hidden;
-  padding: 0.5rem;
-  position: relative;
-  width: 8rem;
-  height: 4rem;
-  outline: none;
   
+  width: 40px;
+  height:  40px;
+  outline: none;
+ 
+  z-index: 999;
 
 `
 
- 
+
+
+
 
 const Toggle = ({ theme, toggleTheme }) => {
+
+    const handleToggle = () => {
+        toggleTheme()
+    }
     return (
-        <Button onClick={toggleTheme}>
-            {theme === "light" ?
-               <span>DARK</span>
-                : <span>LIGHT</span>}
+        <Button onClick={handleToggle}>
+            {/* {theme === "light" ?
+               <Sun/>
+                :     <Sun/>} */}
+            <Sun />
         </Button>
     );
 };

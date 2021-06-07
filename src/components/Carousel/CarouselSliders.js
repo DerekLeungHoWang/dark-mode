@@ -24,7 +24,7 @@ export default CarouselSliders;
 
 const Wrapper = styled.div`
   position: relative;
-  bottom: 70px;
+  /* bottom: 70px; */
   width: 100vw;
   height: 100%;
   display: flex;

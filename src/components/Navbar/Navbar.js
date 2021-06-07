@@ -14,7 +14,7 @@ const Wrapper = styled.div`
     display: flex;
     align-content: center;
     justify-content: space-between;
-    color:${({ theme }) => theme.text};
+    /* color:${({ theme }) => theme.text}; */
 `;
 
 
@@ -27,6 +27,9 @@ const NavLinkContainer = styled.div`
     position: absolute;
     right: 50px;
     top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
  
 `;
 

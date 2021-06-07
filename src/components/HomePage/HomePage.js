@@ -9,21 +9,18 @@ import Toggle from '../Toggler';
 import { useDarkMode } from '../useDarkMode';
 
 
-function HomePage({ theme, themeToggler }) {
+function HomePage({  theme, themeToggler }) {
 
     return (
         <Wrapper>
             <Titles>
                 <BigTitle>Selected Art</BigTitle>
                 <SmallTitle>Hover above the cards to learn more about the art</SmallTitle>
+                <Toggle  theme={theme} toggleTheme={themeToggler} />
             </Titles>
-            {/* <CardList>
-                <Card />
-            </CardList> */}
-
-
-
-            <Toggle theme={theme} toggleTheme={themeToggler} />
+  
+ 
+          
 
             <CarouselSliders />
         </Wrapper>
@@ -40,13 +37,14 @@ const Titles = styled.div`
     position: absolute;
     left: 15%;
     top:15%;
+    text-align: left;
 `
 
 const BigTitle = styled.h1`
 
 `
 const SmallTitle = styled.h5`
-    color: ${({ theme }) => theme.secondaryText};
+    /* color: ${({ theme }) => theme.secondaryText}; */
 `
 
 

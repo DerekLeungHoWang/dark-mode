@@ -5,7 +5,7 @@ import image4 from '../../images/image4.jpg'
 import image5 from '../../images/image5.jpg'
 import image6 from '../../images/image6.jpg'
 import image7 from '../../images/image7.jpg'
-import image8 from '../../images/image8.jpg'
+ 
 
 export const data =
     [
@@ -46,8 +46,8 @@ export const data =
         //     img: image7
         // },
         {
-            id: 8,
-            title: "Drawing 8",
-            img: image8
+            id: 7,
+            title: "Drawing 7",
+            img: image7
         },
     ]

@@ -6,7 +6,7 @@ position: relative;
   /* padding: 10px 5px; */
   width: 400px;
   height: 600px;
-  background: green;
+  /* background: ${({ theme }) => theme.body}; */
   
 `;
 
