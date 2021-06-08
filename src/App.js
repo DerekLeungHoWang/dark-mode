@@ -21,7 +21,7 @@ const Circle = styled.div`
   position: absolute;
   top: 0px;
   left: 0px;
-  clip-path: circle(1% at 17% 28%);
+  clip-path: circle(1% at 14% 30%);
   color: blue;
   font-size: 40px;
   font-weight: 1000;
@@ -51,7 +51,7 @@ function App() {
   useEffect(() => {
 
     tl.current.to(circle.current, {
-      clipPath: "circle(141%  at 17% 28% )",
+      clipPath: "circle(141%  at 14% 30% )",
       duration: .8,
     })
 

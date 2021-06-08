@@ -36,15 +36,17 @@ function HomePage({ theme, themeToggler }) {
     )
 }
 const Titles = styled.div`
-    width:50%;
+    width:75%;
     text-align: left;
+    margin-bottom: 50px;
    
 `
 
 const Wrapper = styled(Grid)`
     
     position: relative;
-    top: 25vh;
+    top: 18vh;
+   
     
 `
 
