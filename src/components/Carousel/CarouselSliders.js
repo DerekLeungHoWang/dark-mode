@@ -23,7 +23,7 @@ function CarouselSliders() {
 export default CarouselSliders;
 
 const Wrapper = styled.div`
- 
+    width: 99.9%;
  
 `;
 

@@ -5,22 +5,22 @@ export const menuItems =
 {
 
     title:'About',
-    url:'#',
+    url:'/about',
 },
 {
 
     title:'Products',
-    url:'#',
+    url:'/products',
 },
 {
 
     title:'Opportunities',
-    url:'#',
+    url:'/opportunities',
 },
 {
 
     title:'Contact',
-    url:'#',
+    url:'/contact',
 },
  
 

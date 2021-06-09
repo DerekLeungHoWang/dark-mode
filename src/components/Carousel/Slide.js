@@ -20,7 +20,7 @@ width: 100%;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: yellow;
+  //background: ${props=>props.theme.contrast};
   margin: 0px 20px;
 `;
 const Image = styled.img`

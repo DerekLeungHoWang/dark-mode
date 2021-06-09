@@ -13,6 +13,10 @@ import {
 } from "react-router-dom";
 import HomePage from './components/HomePage/HomePage';
 import gsap from 'gsap';
+import About from './/components/DummyPages/About'
+import Products from './/components/DummyPages/Products'
+import Opportunities from './/components/DummyPages/Opportunities'
+import Contact from './/components/DummyPages/Contact'
 
 const Circle = styled.div`
   width: 100vw;
@@ -57,11 +61,11 @@ function App() {
 
   }, [])
   useEffect(() => {
- 
-    if(theme==='light'){
+
+    if (theme === 'light') {
       tl.current.play()
 
-    }else{
+    } else {
       tl.current.reverse()
     }
 
@@ -77,10 +81,26 @@ function App() {
 
           <Router>
             <Navbar />
-
+ 
             <Switch>
               <Route path={"/"} render={() => (
-                <HomePage  themeToggler={themeToggler} theme={theme} />
+                <HomePage themeToggler={themeToggler} theme={theme} />
+              )} >
+              </Route>
+              <Route path={"/about"} render={() => (
+                <About />
+              )} >
+              </Route>
+              <Route path={"/products"} render={() => (
+                 <Products/>
+              )} >
+              </Route>
+              <Route path={"/opportunities"} render={() => (
+                    <Opportunities/>
+              )} >
+              </Route>
+              <Route path={"/contact"} render={() => (
+               <Contact/>
               )} >
               </Route>
 

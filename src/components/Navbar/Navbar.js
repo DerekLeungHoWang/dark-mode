@@ -1,6 +1,7 @@
 
 
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
@@ -47,9 +48,9 @@ export default function Navbar() {
             <NavLinkContainer>
                 {menuItems.map((item, index) => {
                     return (
-                        <NavLink key={item.title}>
+                        <Link to={item.url}><NavLink key={item.title}>
                             {item.title}
-                        </NavLink>
+                        </NavLink></Link>
                     )
                 })}
             </NavLinkContainer>
