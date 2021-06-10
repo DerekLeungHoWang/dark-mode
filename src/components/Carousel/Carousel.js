@@ -27,21 +27,26 @@ const InnerContainer = styled.div`
         flex-direction:row;
  
  
-      transform: ${({ count, cursor }) => {
-        console.log(count, cursor);
-        return `translateX(-${(count + cursor) * 400}px)`;
+      transform: ${({ count, cursor, d }) => {
+        
+        return `translateX(-${(count + cursor) * d}px)`;
     }};
            transition: all 500 ease;
 `
 
 const Button = styled.button`
-  color: red;
-  background-color: white;
-  padding: 0 10px;
-  border: 0;
-  display: block;
+ 
+    color: red;
+    align-self: flex-start;
+    border: 0;
+    background-color: transparent;
   cursor: pointer;
-    height: 80px;
+    height: 500px;
+    z-index: 999;
+    margin-top: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    background-color: rgba(255,255,255,0.1);
 `;
 
 
@@ -51,12 +56,14 @@ function Carousel(props) {
     const [cursor, setCursor] = useState(0);
     const [disable, setDisable] = useState(false)
 
+    let d = 450
+
     const count = React.Children.count(props.children);
 
- 
+
 
     useEffect(() => {
-        console.log('triggered, jump = ', jump, ' cursor = ', cursor);
+        
 
         if (jump) {
             innerContainer.current.style.transition = 'none'
@@ -68,13 +75,13 @@ function Carousel(props) {
 
 
         } else {
-            console.log('jump is ', jump);
+            
             innerContainer.current.style.transition = 'all 500ms ease'
 
         }
 
         return () => {
-            console.log('clean');
+            
 
 
         }
@@ -84,7 +91,7 @@ function Carousel(props) {
 
     const onTransitionEnd = () => {
         setDisable(false)
-        console.log('trans end = ', cursor);
+        
         if (cursor >= count) {
 
             setJump(true)
@@ -93,7 +100,7 @@ function Carousel(props) {
         }
 
         else if (cursor <= -1) {
-            console.log('setting cursor to 9 ');
+            
             setJump(true)
             setCursor(count - 1)
 
@@ -129,7 +136,7 @@ function Carousel(props) {
                 <FontAwesomeIcon icon={faChevronLeft} />
             </Button>
             <SlidesContainer>
-                <InnerContainer count={count} cursor={cursor} ref={innerContainer}
+                <InnerContainer d={d} count={count} cursor={cursor} ref={innerContainer}
                     onTransitionEnd={onTransitionEnd}
                 >
                     {renderChildren()}

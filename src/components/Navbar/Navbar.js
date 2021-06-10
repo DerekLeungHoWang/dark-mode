@@ -48,7 +48,7 @@ export default function Navbar() {
             <NavLinkContainer>
                 {menuItems.map((item, index) => {
                     return (
-                        <Link to={item.url}><NavLink key={item.title}>
+                        <Link key={index} to={item.url}><NavLink key={item.title}>
                             {item.title}
                         </NavLink></Link>
                     )
