@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 const Outer = styled.div`
@@ -9,6 +9,7 @@ position: relative;
  display: flex;
  align-items: center;
   justify-content: center;
+ 
 `;
 
 const Inner = styled.div`
@@ -36,23 +37,29 @@ color: ${props => props.theme.text};
 
 export default props => {
 
+  const [current, setCurrent] = useState(null)
+
   let title = useRef()
+  let img = useRef()
 
   useEffect(() => {
 
-
-  }, [])
+    console.log(current);
+  }, [current])
 
   const handleMouseOver = (id) => {
+
  
-    console.log(id);
+    setCurrent(id)
   }
 
   return (
     <Outer>
       <Inner>
-        <Image key={props.item.id} src={props.item.img} alt={props.item.title}
-          onMouseOver={()=>handleMouseOver(props.item.id)}
+        <Image
+          ref={img}
+          key={props.item.id} src={props.item.img} alt={props.item.title}
+          onMouseOver={() => handleMouseOver(props.item.id)}
         />
         <Title ref={title} >{props.item.title}</Title>
       </Inner>

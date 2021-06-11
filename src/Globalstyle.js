@@ -8,5 +8,9 @@ export const GlobalStyles = createGlobalStyle`
     font-family: Tahoma, Helvetica, Arial, Roboto, sans-serif;
 
   }
+
+  a{
+    text-decoration: none;
+  }
   
   `

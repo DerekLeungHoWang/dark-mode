@@ -36,7 +36,7 @@ const InnerContainer = styled.div`
 
 const Button = styled.button`
  
-    color: red;
+    color: ${props=>props.theme.text};
     align-self: flex-start;
     border: 0;
     background-color: transparent;

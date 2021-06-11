@@ -19,7 +19,7 @@ height: 50px;
 const Sun = styled(SunSvg)`
  
  fill: #FF007F;
- height: 60%;
+ height: 50%;
  width: auto;
  
 `
