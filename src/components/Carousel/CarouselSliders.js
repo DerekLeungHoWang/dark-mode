@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import Carousel from "./Carousel";
 import { data } from "./data";
@@ -8,10 +8,11 @@ import Slide from "./Slide";
 
 
 function CarouselSliders() {
+
     return (
         <Wrapper>
 
-            <Carousel>
+            <Carousel  >
                 {data.map((item, index) => {
                     return <Slide key={index + 1} item={item} />;
                 })}

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import gsap from "gsap";
 
 const Wrapper = styled.div`
   display: flex;
@@ -28,15 +29,25 @@ const InnerContainer = styled.div`
  
  
       transform: ${({ count, cursor, d }) => {
-        
+
         return `translateX(-${(count + cursor) * d}px)`;
     }};
-           transition: all 500 ease;
+    transition: all 500 ease;
+    /* &:hover .outer{
+        opacity: 0.5;
+      
+    }
+    & .outer:hover{
+        opacity: 1;
+    } */
+
+
+
 `
 
 const Button = styled.button`
  
-    color: ${props=>props.theme.text};
+    color: ${props => props.theme.text};
     align-self: flex-start;
     border: 0;
     background-color: transparent;
@@ -51,19 +62,33 @@ const Button = styled.button`
 
 
 function Carousel(props) {
+    let slidesContainer = useRef();
     let innerContainer = useRef();
+    const [current, setCurrent] = useState()
     const [jump, setJump] = useState(false);
     const [cursor, setCursor] = useState(0);
     const [disable, setDisable] = useState(false)
-
+    const [hovered, setHovered] = useState(false)
     let d = 450
 
     const count = React.Children.count(props.children);
+    const tl = useRef(gsap.timeline({ paused: true }));
+    useEffect(() => {
+        // let arr = innerContainer.current.children
+        // let i = parseInt(current)
 
+        // tl.current.to([...arr], { duration: .3, scale: .9, opacity: .5 })
 
+    }, [])
 
     useEffect(() => {
-        
+
+
+
+    }, [])
+
+    useEffect(() => {
+
 
         if (jump) {
             innerContainer.current.style.transition = 'none'
@@ -75,23 +100,28 @@ function Carousel(props) {
 
 
         } else {
-            
+
             innerContainer.current.style.transition = 'all 500ms ease'
 
         }
 
-        return () => {
-            
 
-
-        }
     }, [jump, cursor])
 
+    const handleHover = (id) => {
+        setCurrent(id)
+        setHovered(true)
 
+    }
+    const handleLeave = (id) => {
+
+        setHovered(false)
+
+    }
 
     const onTransitionEnd = () => {
         setDisable(false)
-        
+
         if (cursor >= count) {
 
             setJump(true)
@@ -100,7 +130,7 @@ function Carousel(props) {
         }
 
         else if (cursor <= -1) {
-            
+
             setJump(true)
             setCursor(count - 1)
 
@@ -120,7 +150,7 @@ function Carousel(props) {
         children = [].concat(children, children, children);
 
         return children.map((child, index) => {
-            return React.cloneElement(child, { key: index });
+            return React.cloneElement(child, { key: index, handleHover, handleLeave, index: index });
         });
     }
 
@@ -135,8 +165,8 @@ function Carousel(props) {
             <Button disabled={disable} onClick={() => changeCursor(-1)}>
                 <FontAwesomeIcon icon={faChevronLeft} />
             </Button>
-            <SlidesContainer>
-                <InnerContainer d={d} count={count} cursor={cursor} ref={innerContainer}
+            <SlidesContainer ref={slidesContainer}>
+                <InnerContainer className="innerContainer" d={d} count={count} cursor={cursor} ref={innerContainer}
                     onTransitionEnd={onTransitionEnd}
                 >
                     {renderChildren()}
