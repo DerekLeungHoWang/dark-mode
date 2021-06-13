@@ -43,42 +43,76 @@ export default props => {
   const [hovered, setHovered] = useState(false)
   const [ref, setRef] = React.useState({});
 
-  const tl = useRef(gsap.timeline({ paused: true }));
+  const tl = useRef(gsap.timeline());
+  let refs = [];
 
-
-  let outer = useRef()
+  let outer = useRef([])
   let inner = useRef()
   let title = useRef()
   let img = useRef()
 
   useEffect(() => {
-    console.log('current = ', current);
-   // tl.current.to(".outer", { duration: 1, scale: 0.8 })
- 
-    tl.current.to(".outer", { duration: 1, scale: .5 ,overwrite:true })   
-     .to(outer.current, { duration: 1, scale: 1.5} )   
-
-  }, [current])
 
 
-  useEffect(() => {
+
+
+
 
   }, [])
 
+
+
+
   const handleMouseOver = (e, id) => {
-    
-    setCurrent(parseInt(id))
-    tl.current.play()
-    // props.handleHover(id)
-    setHovered(true)
- 
-  }
-  const handleMouseLeave = (e, id) => {
-    tl.current.reverse()
-    // props.handleLeave()
-    setHovered(false)
+    let nodes = [...outer.current.parentNode.childNodes]
+
+    let newNodes = nodes.filter((item, i) => {
+      return i != id
+    })
+
+    let target = nodes.filter((item, i) => {
+      return i == id
+    })
+
+    gsap.to(newNodes, {
+      scale: .9,
+      duration: .5,
+      opacity: .3,
+      ease:"power3.inOut"
+    })
+    gsap.to(target, {
+      scale: 1.2,
+      duration: .5,
+      opacity: 1,
+     // overwrite:true,
+     // ease:"power3.inOut"
+    })
+
 
   }
+  const handleMouseLeave = (e, id) => {
+    let nodes = [...outer.current.parentNode.childNodes]
+    let target = nodes.filter((item, i) => {
+      return i == id
+    })
+    gsap.to(nodes, {
+      scale: 1,
+      duration: .5,
+      opacity: 1
+    })   
+    gsap.to(target, {
+      scale: 1,
+      duration: .5,
+      opacity: 1,
+      // overwrite:true,
+
+      // ease:"power3.inOut"
+    })
+
+
+  }
+
+
 
   return (
     <Outer ref={outer} data-key={props.item.id} className="outer" >
@@ -87,8 +121,8 @@ export default props => {
           ref={img}
 
           key={props.item.id} src={props.item.img} alt={props.item.title}
-          onMouseOver={(e) => handleMouseOver(e, props.item.id)}
-          onMouseLeave={(e) => handleMouseLeave(e, props.item.id)}
+          onMouseOver={(e) => handleMouseOver(e, props.index)}
+          onMouseLeave={(e) => handleMouseLeave(e, props.index)}
         />
         <Title ref={title} >{props.item.title}</Title>
       </Inner>

@@ -33,13 +33,7 @@ const InnerContainer = styled.div`
         return `translateX(-${(count + cursor) * d}px)`;
     }};
     transition: all 500 ease;
-    /* &:hover .outer{
-        opacity: 0.5;
-      
-    }
-    & .outer:hover{
-        opacity: 1;
-    } */
+  */
 
 
 
@@ -72,20 +66,9 @@ function Carousel(props) {
     let d = 450
 
     const count = React.Children.count(props.children);
-    const tl = useRef(gsap.timeline({ paused: true }));
-    useEffect(() => {
-        // let arr = innerContainer.current.children
-        // let i = parseInt(current)
-
-        // tl.current.to([...arr], { duration: .3, scale: .9, opacity: .5 })
-
-    }, [])
-
-    useEffect(() => {
-
-
-
-    }, [])
+ 
+ 
+ 
 
     useEffect(() => {
 
