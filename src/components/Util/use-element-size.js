@@ -12,8 +12,13 @@ function useElementSize(node) {
 
     useLayoutEffect(() => {
         if (node) {
+          
+            setDimension({ 
+                detail: node.current.getBoundingClientRect(),
+           
+             });
             const measuer = () => {
-                
+              
                 setDimension({ 
                     detail: node.current.getBoundingClientRect(),
                

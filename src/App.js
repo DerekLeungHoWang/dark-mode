@@ -30,10 +30,10 @@ const Circle = styled.div`
 
     let x = props.buttonData.detail.x
     let y = props.buttonData.detail.y
-    console.log(x,y);
+    
     //return `circle(1% at 15% 30%)`
 
-    return `circle(10px at ${x?x:1}px ${y?y:300}px)`
+    return `circle(10px at ${x}px ${y}px)`
   }};
   color: blue;
   font-size: 40px;
@@ -63,12 +63,13 @@ function App() {
   let button = useRef(null)
   const [dimension, setDimension] = useState({})
   let buttonData = useElementSize(button)
- 
+  let x = buttonData.detail.x
+  let y = buttonData.detail.y
 
   useEffect(() => {
 
     tl.current.to(circle.current, {
-      clipPath: "circle(141%  )",
+      clipPath: `circle(141%  at 0% 0% )`,
       duration: .8,
     })
   }, [])
@@ -76,18 +77,32 @@ function App() {
 
  
   useEffect(() => {
-
+ 
     if (theme === 'light') {
  
       tl.current.play()
 
     } else {
       tl.current.reverse()
+      circle.current.style.clipPath=`circle(10px at ${x?x+20:20}px ${y?y+25:30}px)`
+      console.log( circle.current.style.clipPath);
     }
 
 
 
   }, [theme])
+
+  useEffect(() => {
+ circle.current.style.clipPath=`circle(10px at ${x}px ${y}px)`
+    console.log( circle.current.style.clipPath);
+
+  }, [x,y])
+  useEffect(() => {
+    console.log(buttonData);
+   
+     }, [buttonData])
+  
+  console.log(x);
 
   return (
     <ThemeProvider theme={themeMode}>
