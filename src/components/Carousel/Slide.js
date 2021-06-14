@@ -33,8 +33,9 @@ height: 900px;
 
 `
 
-const Title = styled.p`
+const Title = styled.h2`
 color: ${props => props.theme.text};
+
 `
 
 export default props => {
@@ -64,6 +65,7 @@ export default props => {
 
 
   const handleMouseOver = (e, id) => {
+ 
     let nodes = [...outer.current.parentNode.childNodes]
 
     let newNodes = nodes.filter((item, i) => {
@@ -76,38 +78,31 @@ export default props => {
 
     gsap.to(newNodes, {
       scale: .9,
-      duration: .5,
+      duration: .8,
       opacity: .3,
-      ease:"power3.inOut"
+ 
     })
-    gsap.to(target, {
-      scale: 1.2,
-      duration: .5,
-      opacity: 1,
-     // overwrite:true,
-     // ease:"power3.inOut"
-    })
+ 
 
 
   }
   const handleMouseLeave = (e, id) => {
+   
     let nodes = [...outer.current.parentNode.childNodes]
+    let newNodes = nodes.filter((item, i) => {
+      return i != id
+    })
+
     let target = nodes.filter((item, i) => {
       return i == id
     })
-    gsap.to(nodes, {
+
+    gsap.to(newNodes, {
       scale: 1,
-      duration: .5,
+      duration: .8,
       opacity: 1
     })   
-    gsap.to(target, {
-      scale: 1,
-      duration: .5,
-      opacity: 1,
-      // overwrite:true,
-
-      // ease:"power3.inOut"
-    })
+  
 
 
   }

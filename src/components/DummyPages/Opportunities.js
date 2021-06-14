@@ -1,10 +1,11 @@
 import React from 'react'
+import { Wrapper } from './Styles'
 
 function Opportunities() {
     return (
-        <div>
+        <Wrapper>
             This is Opportunities page
-        </div>
+        </Wrapper>
     )
 }
 

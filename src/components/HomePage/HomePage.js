@@ -1,5 +1,5 @@
 import { Grid } from '@material-ui/core';
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components';
 import Card from '../Card/Card';
 import CardList from '../Card/CardList';
@@ -10,7 +10,8 @@ import Toggle from '../Toggler';
 import { useDarkMode } from '../useDarkMode';
 
 
-function HomePage({ theme, themeToggler }) {
+const HomePage = React.forwardRef(({ theme, themeToggler }, ref) => {
+
 
     return (
         <Wrapper container
@@ -25,7 +26,7 @@ function HomePage({ theme, themeToggler }) {
                 <Titles>
                     <BigTitle>Selected Art</BigTitle>
                     <SmallTitle>Hover above the cards to learn more about the art</SmallTitle>
-                    <Toggle theme={theme} toggleTheme={themeToggler} />
+                    <Toggle ref={ref} theme={theme} toggleTheme={themeToggler} />
                 </Titles>
             </Grid>
 
@@ -34,7 +35,7 @@ function HomePage({ theme, themeToggler }) {
             </Grid>
         </Wrapper>
     )
-}
+})
 const Titles = styled.div`
     width:75%;
     text-align: left;

@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { forwardRef, useEffect, useRef } from 'react'
 import styled from "styled-components"
 import { ReactComponent as SunSvg } from '../images/sun.svg'
+import { ReactComponent as MoonSvg } from '../images/moon.svg'
+import useElementSize from './Util/use-element-size'
 const Button = styled.button`
  padding: 0px;
  margin: 0px;
@@ -19,33 +21,54 @@ height: 50px;
 const Sun = styled(SunSvg)`
  
  fill: #FF007F;
- height: 50%;
+ height: 40%;
+ width: auto;
+ 
+`
+const Moon = styled(MoonSvg)`
+ 
+ fill: #FF007F;
+ height: 40%;
  width: auto;
  
 `
 const Wrapper = styled.div`
  color: #FF007F;
  display: flex;
+  padding-top: 10px;
+ 
+`
+
+const Text = styled.p`
+padding-left: 10px;
+font-weight: 500;
   
  
 `
 
+const Toggle = React.forwardRef(({ theme, toggleTheme }, ref) => {
+  
 
-
-const Toggle = ({ theme, toggleTheme }) => {
 
     const handleToggle = () => {
         toggleTheme()
     }
+    // const dimeonsion  = useElementSize(button)
+    // useEffect(() => {
+
+    //         
+    // }, [dimeonsion])
+
     return (
         <Wrapper>
-            <Button onClick={handleToggle}>
-                <Sun />
+            <Button id="darkModeButton" ref={ref} onClick={handleToggle}>
+
+                {theme === "dark" ? <Moon /> : <Sun />}
             </Button>
-            <p></p>
+            <Text>Click to Enable {`${theme === "dark" ? "Dark" : "Light"}`} Mode</Text>
         </Wrapper>
     );
-};
+});
 
 
 export default Toggle;

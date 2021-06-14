@@ -17,15 +17,24 @@ import About from './/components/DummyPages/About'
 import Products from './/components/DummyPages/Products'
 import Opportunities from './/components/DummyPages/Opportunities'
 import Contact from './/components/DummyPages/Contact'
+import useElementSize from './components/Util/use-element-size';
 
 const Circle = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: #000;
+  background-color: red;
   position: absolute;
   top: 0px;
   left: 0px;
-  clip-path: circle(1% at 14% 30%);
+  clip-path: ${props => {
+
+    let x = props.buttonData.detail.x
+    let y = props.buttonData.detail.y
+    console.log(x,y);
+    //return `circle(1% at 15% 30%)`
+
+    return `circle(10px at ${x?x:1}px ${y?y:300}px)`
+  }};
   color: blue;
   font-size: 40px;
   font-weight: 1000;
@@ -51,18 +60,25 @@ function App() {
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
   let circle = useRef();
   let tl = useRef(gsap.timeline({ paused: true }));
+  let button = useRef(null)
+  const [dimension, setDimension] = useState({})
+  let buttonData = useElementSize(button)
+ 
 
   useEffect(() => {
 
     tl.current.to(circle.current, {
-      clipPath: "circle(141%  at 14% 30% )",
+      clipPath: "circle(141%  )",
       duration: .8,
     })
-
   }, [])
+
+
+ 
   useEffect(() => {
 
     if (theme === 'light') {
+ 
       tl.current.play()
 
     } else {
@@ -81,10 +97,10 @@ function App() {
 
           <Router>
             <Navbar />
- 
+
             <Switch>
-              <Route path={"/"} render={() => (
-                <HomePage themeToggler={themeToggler} theme={theme} />
+              <Route exact path={"/"} render={() => (
+                <HomePage ref={button} themeToggler={themeToggler} theme={theme} />
               )} >
               </Route>
               <Route path={"/about"} render={() => (
@@ -92,22 +108,22 @@ function App() {
               )} >
               </Route>
               <Route path={"/products"} render={() => (
-                 <Products/>
+                <Products />
               )} >
               </Route>
               <Route path={"/opportunities"} render={() => (
-                    <Opportunities/>
+                <Opportunities />
               )} >
               </Route>
               <Route path={"/contact"} render={() => (
-               <Contact/>
+                <Contact />
               )} >
               </Route>
 
             </Switch>
 
           </Router>
-          <Circle ref={circle} />
+          <Circle buttonData={buttonData} ref={circle} />
           {/* <Cont>
             <MyButton
               onClick={() => tl.current.play()}

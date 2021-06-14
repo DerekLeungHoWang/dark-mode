@@ -15,7 +15,7 @@ const Wrapper = styled.div`
     display: flex;
     align-content: center;
     justify-content: space-between;
-    /* color:${({ theme }) => theme.text}; */
+ 
 `;
 
 
@@ -38,6 +38,9 @@ const NavLink = styled.div`
     text-decoration: none;
     margin-left: 50px;
     color: ${({ theme }) => theme.text};
+    @media (max-width: 768px) {
+   display: none;
+  }
 `;
 export default function Navbar() {
 

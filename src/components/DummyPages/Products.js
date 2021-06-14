@@ -1,10 +1,11 @@
 import React from 'react'
+import { Wrapper } from './Styles'
 
 function Products() {
     return (
-        <div>
+        <Wrapper>
                This is Product page
-        </div>
+        </Wrapper>
     )
 }
 
